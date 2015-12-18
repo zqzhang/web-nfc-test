@@ -43,6 +43,9 @@ function processMessage(message) {
 }
 ```
 
+**Pre-condition**: avaiable NFC tag and successfully tap simulation. The
+`NFCWatchOptions` doesn't specify whether it is a tag or a peer.
+
 **Notes**:
 
 * There is a typo `NFC.watch(options, callback)` at
