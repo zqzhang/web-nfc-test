@@ -17,6 +17,15 @@
 #### Reading an NFC tag
 
 ```js
+navigator.nfc.watch((message) => {
+  // Process massage here or do more checking here.
+  processMessage(message);
+}).then(() => {
+  // Added a watch.
+}).catch((error) => {
+  // Failed to add a watch.
+});
+
 function processMessage(message) {
   for (let record of message.data) {
     // The record here shall be NDEF record parsed following
