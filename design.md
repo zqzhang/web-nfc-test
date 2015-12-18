@@ -19,24 +19,32 @@
 ```js
 function processMessage(message) {
   for (let record of message.data) {
+    // The record here shall be NDEF record parsed following
+    // https://w3c.github.io/web-nfc/#dfn-parsing-ndef-record
     switch (record.recordType) {
-      case "string":
-        console.log('Data is string: ' + record.data);
+      case "empty":
+        // record.mediaType = ""
+        break;
+      case "text":
+        // record.mediaType = "text/plain"
+        // record.mediaType = "text/plain;lang=*"
         break;
       case "url":
-        console.log('Data is URL: ' + record.data);
+        // record.mediaType = "text/plain"
         break;
       case "json":
-        console.log('JSON data: ' + record.data.myProperty.toString());
+        // record.mediaType = "application/*json"
         break;
       case "opaque":
-        if (record.mediaType == 'image/png') {
-          var img = document.createElement("img");
-          img.src = URL.createObjectURL(new Blob(record.data, record.mediaType));
-          img.onload = function() {
-            window.URL.revokeObjectURL(this.src);
-          };
-        }
+        // record.mediaType = ndef.TYPE 
+        // record.mediaType = "application/octet-stream"
+        break;
+      default:
+        // The 4.8 step doesn't specify the `record.recordType`,
+        // we can check the message.url here.
+        // Maybe this is a spec bug because the 5 step says that only
+        // If NFC@[[suspended]] is false and message.data is not empty,
+        // run the dispatch NFC content steps given message.
         break;
     }
   }
@@ -51,9 +59,14 @@ function processMessage(message) {
 * Spec typo `NFC.watch(options, callback)` at
   https://w3c.github.io/web-nfc/#dom-nfc-watch; 
   should be `NFC.watch(callback, options)`.
-* Spec typo "`MessageCallback`var>callback" at the 7th step
+* Spec typo "`MessageCallback`var>callback" at the 1.7 step
   https://w3c.github.io/web-nfc/#dfn-dispatch-nfc-content;
   should be `<code>MessageCallback</code> <var>callback</var>` in source file.
+* Spec typo `"application/octet-stream` at the 4.9.2 step
+  https://w3c.github.io/web-nfc/#dfn-parsing-ndef-record;
+  miss a `"`.
+* Spec error in Example 4 `case "string":`; should be `case "text":` per
+  https://w3c.github.io/web-nfc/#the-nfcrecord-dictionary
 
 ### Parameter to Test
 
