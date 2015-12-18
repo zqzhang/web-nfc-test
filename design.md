@@ -43,6 +43,12 @@ function processMessage(message) {
 }
 ```
 
+**Notes**:
+
+* There is a typo `NFC.watch(options, callback)` at
+  https://w3c.github.io/web-nfc/#dom-nfc-watch
+  Should be `NFC.watch(callback, options)`
+
 ### Parameter to Test
 
 
