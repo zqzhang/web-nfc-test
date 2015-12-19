@@ -152,6 +152,46 @@ function processMessage(message) {
 * Spec error in Example 4 `case "string":`; should be `case "text":` per
   https://w3c.github.io/web-nfc/#the-nfcrecord-dictionary
 
+#### Writing to an NFC tag
+
+> The user opens a web page which can write an NFC tag.
+
+> Note that an NFC write operation to an NFC tag always involves also a read
+  operation.
+
+```js
+// Writing to an empty NFC tag.
+```
+
+```js
+// Writing to an NFC tag which already contains a Web NFC message with a
+// different Web NFC message origin (i.e. overwriting a web-specific tag).
+```
+
+```js
+// Writing to an NFC tag which already contains a Web NFC message with the same
+// Web NFC message origin (i.e. updating own tag).
+```
+
+```js
+// Writing to other, writable NFC tags (i.e. overwriting a generic tag).
+```
+
+#### Pushing data to an NFC peer device
+
+> On the initiating device the user would first have to navigate to a web site.
+  The user would then touch the device against another Web NFC equipped device,
+  and data transfer would occur.
+
+> On the receiving device the UA will dispatch the content to an application
+  registered and eligible to handle the content, and if that application is a
+  browser which has a web page open and in focus that uses the Web NFC API and
+  has set up a NFC watch to listen to Web NFC content, then the content is
+  delivered to the web page through the parameters of an NFCMessageCallback.
+
+```js
+```
+
 ### Parameter to Test
 
 
