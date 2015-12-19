@@ -2,7 +2,27 @@
 
 ## Introduction
 
+This document is trying to design web platform tests for the
+[Web NFC API](https://w3c.github.io/web-nfc/) specification.
+
+The designed test cases are described by **test assertion** with proper
+pre-/post-condition.
+
 ## Terms
+
+Most of the terms are designed in W3C
+[test methodology](http://www.w3.org/TR/test-methodology/) specification
+which specify a method for wirting testable conformance requirements.
+
+* **Requirement** means conformance requirement of the specification to be
+  tested.
+* **Test assertion** is a prose description of a test case intended for human
+  testers - i.e., for a given test case, testable assertion defines exactly
+  what the user agent needs to do (behaviorally or conditionally) to pass the
+  test case. It is important to note that testable assertions don’t appear in
+  a specification - they only appear in a test suite to describe a test case. 
+* A **test case** is a machine processable object that is used to test one
+  or more conformance requirements
 
 ## Test Design
 
