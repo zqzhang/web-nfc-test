@@ -77,6 +77,8 @@ the spec editors can resolve this and the issue #2 together.
 #### Reading an NFC tag
 
 ```js
+// Reading an NFC tag containing a Web NFC message,
+// when a web page using the Web NFC API is open and in focus. 
 navigator.nfc.watch((message) => {
   // Test assertion: check that successfully read an NFC device.
 
@@ -133,6 +135,14 @@ function processMessage(message) {
     }
   }
 }
+```
+
+```js
+// Reading an NFC tag containing other than Web NFC message,
+// when a web page using the Web NFC API is open and in focus.
+// Does this mean the issue I mentioned above that ndef.TNF is
+// 6 (NFC Unchaged Type record)
+// or 7 (NFC Reserved Type record)?
 ```
 
 **Pre-condition**: avaiable NFC tag and successfully tap simulation. The
