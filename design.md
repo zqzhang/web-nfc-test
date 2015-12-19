@@ -56,19 +56,18 @@ A possible solution to this issue is to extend the existing test cases in
 and [idl-NFC.html](https://zqzhang.github.io/demo/webnfc/idl-NFC.html)
 to check the Web IDL fragments with reference to the checkpoints in
 idlharness.js; and then change to idlharness.js based tests after resolving
-issue.
+the issue.
 
 **Issue #2**: The Web NFC API spec refers to http://www.w3.org/TR/WebIDL-1/,
-a W3C Working Draft 04 August 2015, while the idlharness.js is updating with
-https://heycam.github.io/webidl/, a W3C Editor's Draft 17 November 2015.
-So there is a potential issue here that the Web IDL spec development will make
-difference among the API specification, API implementation and idlharness.js
-framework.
+a W3C Working Draft 04 August 2015, while the idlharness.js is always updating
+with latest Editor's Draft https://heycam.github.io/webidl/. So there is a
+potential issue here that the Web IDL spec development will make difference
+among the API specification, API implementation and idlharness.js framework.
 
 **Note**: There is a reference mismatch for the WebIDL specification. In
 normative reference section, it is http://www.w3.org/TR/WebIDL-1/; while in
 terminology and conventions section http://heycam.github.io/webidl/. Maybe
-the spec editors can resolve the issue #2 together.
+the spec editors can resolve this and the issue #2 together.
 
 ### Example to Test
 
