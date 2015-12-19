@@ -159,3 +159,11 @@ function processMessage(message) {
 
 
 ## References
+
+* Dominique Hazael-Massieux, Marcos Caceres. A Method for Writing Testable
+  Conformance Requirements. W3C Working Group Note 28 January 2010. URL:
+  http://www.w3.org/TR/test-methodology/
+* Kenneth Rohde Christiansen, Zoltan Kis. Web NFC API. Draft Community Group
+  Report 13 November 2015. URL: https://w3c.github.io/web-nfc/
+* Testing Web Bluetooth. Draft Community Group Report, 23 September 2015. URL:
+  https://webbluetoothcg.github.io/web-bluetooth/tests/
