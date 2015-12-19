@@ -69,10 +69,7 @@ normative reference section, it is http://www.w3.org/TR/WebIDL-1/; while in
 terminology and conventions section http://heycam.github.io/webidl/. Maybe
 the spec editors can resolve this and the issue #2 together.
 
-### Example to Test
-
-
-### Use Case to Test
+### Use Case and Example to Test
 
 #### Reading an NFC tag
 
