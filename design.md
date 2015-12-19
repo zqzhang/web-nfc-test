@@ -10,12 +10,12 @@ pre-/post-condition.
 
 ## Terms
 
-Most of the terms are designed in W3C
+Most of the terms are defined in W3C
 [test methodology](http://www.w3.org/TR/test-methodology/) specification
-which specify a method for wirting testable conformance requirements.
+which specifies a method for wirting testable conformance requirements.
 
-* **Requirement** means conformance requirement of the specification to be
-  tested.
+* **Requirement** means conformance requirement of the API specification
+  to be tested.
 * **Test assertion** is a prose description of a test case intended for human
   testers - i.e., for a given test case, testable assertion defines exactly
   what the user agent needs to do (behaviorally or conditionally) to pass the
