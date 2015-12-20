@@ -388,6 +388,14 @@ callback MessageCallback = void (NFCMessage message);
 
 ### Algorithm, Statement to Test
 
+Please note that
+* "passing too few arguments must throw TypeError"
+has been tested by idlharness.js `IdlInterface.prototype.test_interface_of` at
+https://github.com/w3c/testharness.js/blob/master/idlharness.js#L1461
+* "passing arguments of the wrong type" may be supported by idlharness.js
+`IdlInterface.prototype.test_interface_of` at the same place sometime in the
+future; thus these tests designed here are subjected to be replaced.
+
 
 ## References
 
