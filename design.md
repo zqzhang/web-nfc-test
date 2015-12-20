@@ -212,7 +212,121 @@ navigator.nfc.watch((message) => {
 
 ```js
 // Writing to other, writable NFC tags (i.e. overwriting a generic tag).
+// Pre-condition:
+// Post-condition:
+
+// EXAMPLE 1: Push a text string to either a tag or peer
+navigator.nfc.push(
+  '{ "prop1": "value1", "prop2": "value2" }'
+).then(() => {
+  console.log("Message pushed.");
+  // Test assertion: re-read the NFC tag and check that the message data is
+  //                 the same text string as pushed.
+}).catch((error) => {
+  console.log("Push failed :-( try again.");
+});
+
+// EXAMPLE 3: Push a URL to either a tag or peer
+navigator.nfc.push({
+  data: [{ recordType: "url", data: "https://w3c.github.io/web-nfc/" }]
+}).then(() => {
+  console.log("Message pushed.");
+  // Test assertion: re-read the NFC tag and check that the message data is
+  //                 the same URL as pushed.
+}).catch((error) => {
+  console.log("Push failed :-( try again.");
+});
+
+// EXAMPLE 5: Save and restore game progress with another device
+navigator.nfc.watch(reader, { url: "*/mypath/mygame/*" });
+
+function reader(message) {
+  console.log("Source:     " + message.url);
+  console.log("Game state: " + message.data);
+
+  var message = {
+    url: "/mypath/mygame/update",
+    data: [{
+      recordType: "json",
+      mediaType: "application/json",
+      data: { level: 3, points: 4500, lives: 3 }
+    }]
+  };
+
+  navigator.nfc.push(message).then(() => {
+    // Test assertion: re-read the NFC tag and check that the message data is
+    //                 the same JSON data as pushed.
+    console.log('Progress stored!');
+  }).catch((error) => {
+    console.log('Failure, please try again.');
+  });
+}
+
+// EXAMPLE 6: Push and read JSON (serialized and deserialized)
+navigator.nfc.watch((message) => {
+  for (let record of message.data) {
+    // Test assertion: re-read the NFC tag and check that the message data is
+    //                 the same JSON data as pushed.
+    let article =/[aeio]/.test(record.data.title) ? "an" : "a";
+    console.log(`$(record.data.name) is $(article) $(record.data.title)`);
+  }
+}, { url: document.baseURI, recordType: = "json" });
+
+navigator.nfc.push({
+  data: [
+    {
+      recordType: "json",
+      mediaType: "application/json",
+      data: {
+        name: "Benny Jensen",
+        title: "Banker"
+      }
+    },
+    {
+      recordType: "json",
+      mediaType: "application/json",
+      data: {
+        name: "Zoey Braun",
+        title: "Engineer"
+      }
+    }]
+});
+
+// EXAMPLE 7: Write data to tag and print out existing data
+navigator.nfc.watch((message) => {
+  for (let record of message.data) {
+    console.log("Record type:  " + record.recordType);
+    console.log("MIME type:    " + record.mediaType);
+    console.log("=== data ===\n" + record.data);
+  }
+});
+
+navigator.nfc.push(
+  "Pushing data is fun!",
+  {
+    target: "tag",
+    ignoreRead: false
+  }
+);
+// Test assertion: not ready. Seems need to do a first read for better checking.
+
+// EXAMPLE 8: Write Chinese text as UTF-8
+let encoder = new TextEncoder([utfLabel = "utf-8"]);
+let utf8Text = encoder.encode("?????");
+
+navigator.nfc.push({ data: [
+  {
+    recordType: "text",
+    mediaType: "text/plain; lang=zh; charset=UTF-8;",
+    data: utf8Text.buffer
+  }
+]});
+// Test assertion: re-read the NFC tag and check that the message data is
+//                 the same Chinese text as pushed.
 ```
+
+**Notes**:
+* Inconsistent code indent in EXAMPLE 1, 2, 3
 
 #### Pushing data to an NFC peer device
 
