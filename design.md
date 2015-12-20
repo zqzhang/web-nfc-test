@@ -94,6 +94,7 @@ navigator.nfc.watch((message) => {
   // Can further check the errors, e.g. SecurityError, NotSupportedError.
 });
 
+// Reference to EXAMPLE 4 with some modifications.
 function processMessage(message) {
   // Test assertion: check that message is a dictionary of NFCMessage, etc.
   // https://w3c.github.io/web-nfc/#dom-nfcmessage
