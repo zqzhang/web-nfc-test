@@ -142,6 +142,16 @@ function processMessage(message) {
 // or 7 (NFC Reserved Type record)?
 ```
 
+```js
+// Reading an NFC tag
+// when no web site using the Web NFC API is open or in focus.
+// Seems this use-case includes handling Window visibility and focus described
+// at https://w3c.github.io/web-nfc/#handling-window-visibility-and-focus
+// However the spec is not clear about what is to be expected.
+// See https://w3c.github.io/web-nfc/#the-ndef-parsing-algorithm
+// "If NFC@[[suspended]] is true, abort these steps."
+```
+
 **Pre-condition**: avaiable NFC tag and successfully tap simulation. The
 `NFCWatchOptions` doesn't specify whether it is a tag or a peer.
 
