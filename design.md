@@ -365,7 +365,25 @@ navigator.nfc.push({
 });
 ```
 
-### Parameter to Test
+### Method Parameter to Test
+
+This section will focus on various kind of **valid** input values (parameters)
+to the methods in the NFC interface.
+
+```js
+// WebIDL of the NFC interface
+// https://w3c.github.io/web-nfc/#the-nfc-interface
+typedef (DOMString or ArrayBuffer or NFCMessage) NFCPushMessage;
+
+interface NFC {
+    Promise<void> push(NFCPushMessage message, optional NFCPushOptions options);
+    Promise<void> cancelPush(optional NFCPushTarget target = "any");
+    Promise<long> watch(MessageCallback callback, optional NFCWatchOptions options);
+    Promise<void> cancelWatch(optional long id);
+};
+
+callback MessageCallback = void (NFCMessage message);
+```
 
 
 ### Algorithm, Statement to Test
