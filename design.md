@@ -178,6 +178,26 @@ function processMessage(message) {
 
 ```js
 // Writing to an empty NFC tag.
+// EXAMPLE 4: Read data from tag, and write to empty ones
+navigator.nfc.watch((message) => {
+  if (message.data[0].recordType == 'empty') {
+    // Test assertion: check that an empty NFC tag is found.
+    navigator.nfc.push({
+      url: "/custom/path",
+      data: [{ recordType: "text", data: 'Hello World' }]
+    });
+    // Test assertion: check that it is able to write to an empty NFC tag.
+    // Test assertion: re-read the NFC tag and check that the message data is
+    //                 the same one as pushed.
+  } else {
+    console.log('Read message written by ' + message.url);
+    processMessage(message);
+  }
+}).then(() => {
+  console.log("Added a watch.");
+}).catch((error) => {
+  console.log("Adding watch failed: " + error.name);
+});
 ```
 
 ```js
