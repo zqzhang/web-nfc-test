@@ -342,6 +342,27 @@ navigator.nfc.push({ data: [
   delivered to the web page through the parameters of an NFCMessageCallback.
 
 ```js
+// EXAMPLE 2: Push a text string to a peer device
+navigator.nfc.push(
+  "Text meant for peers only", { target: "peer" }
+).then(() => {
+  console.log("Message pushed.");
+  // Test assertion: re-read the NFC peer and check that the message data is
+  //                 the same text string as pushed.
+}).catch((error) => {
+  console.log("Push failed :-( try again.");
+});
+
+// EXAMPLE 3: Push a URL to either a tag or peer
+navigator.nfc.push({
+  data: [{ recordType: "url", data: "https://w3c.github.io/web-nfc/" }]
+}).then(() => {
+  console.log("Message pushed.");
+  // Test assertion: re-read the NFC peer and check that the message data is
+  //                 the same URL as pushed.
+}).catch((error) => {
+  console.log("Push failed :-( try again.");
+});
 ```
 
 ### Parameter to Test
