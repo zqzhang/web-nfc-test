@@ -325,6 +325,7 @@ navigator.nfc.push({ data: [
 ]});
 // Test assertion: re-read the NFC tag and check that the message data is
 //                 the same Chinese text as pushed.
+// See https://encoding.spec.whatwg.org/#interface-textencoder
 ```
 
 **Notes**:
@@ -416,7 +417,29 @@ navigator.nfc.push('a\uD800\uDC00a');
 
 #### ArrayBuffer as NFCPushMessage
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer
+says we cannot directly manipulate the contents of an `ArrayBuffer`; instead, we
+can create one of the typed array objects or a DataView object which represents
+the buffer in a specific format, and use that to read and write the contents of
+the buffer. So we will use typed array to make array buffer.
 
+EXAMPLE 8 uses `TextEncoder` which is specified by the
+[Encoding](http://encoding.spec.whatwg.org/#interface-textdecoder) spec,
+in which the `TextEncoder.encode` method returns a **Uint8Array** containing
+the text given in parameters encoded with the specific method for that
+TextEncoder object. We will also use this method to make array buffer.
+
+The [FileAPI](https://w3c.github.io/FileAPI/#readAsArrayBuffer) has
+`readAsArrayBuffer` method that can help get an array buffer from a local file.
+However this is not helpful for automating the tests. We won't use it.
+
+```js
+var arrayBuffer; // Can be one of the following array buffers.
+navigator.nfc.push(arrayBuffer);
+// Test assertions: check that it is able to push array buffer to an NFC device.
+
+arrayBuffer = new ArrayBuffer(8);
+```
 
 #### NFCMessage as NFCPushMessage
 
