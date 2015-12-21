@@ -394,7 +394,25 @@ with rest mandatory parameter(s) as default or simple value(s).
 
 #### DOMString as NFCPushMessage
 
+According to https://heycam.github.io/webidl/#es-DOMString, an ECMAScript value
+is able to be converted to an IDL DOMString value. And there are [lots of such
+kind of
+values](https://github.com/w3c/web-platform-tests/pull/271/files#diff-ebea7eac2263f684d9017d3aa966505eR20).
+Actually I don't want to check it as such comprehensive. It is enough to check
+only some string values like empty string, string and unicode.
 
+```js
+navigator.nfc.push('');
+// Test assertion: check that it is able to push empty text to an NFC device.
+// There are maybe some problem in this test e.g. how to check the read data?
+
+navigator.nfc.push('hello');
+// This checkpint has been covered by EXAMPLE 2
+
+navigator.nfc.push('a\uD800\uDC00a');
+// Test assertion: check that it is able to push unicode string to an NFC
+// device.
+```
 
 #### ArrayBuffer as NFCPushMessage
 
