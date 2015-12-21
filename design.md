@@ -390,11 +390,24 @@ callback MessageCallback = void (NFCMessage message);
 
 Please note that
 * "passing too few arguments must throw TypeError"
-has been tested by idlharness.js `IdlInterface.prototype.test_interface_of` at
-https://github.com/w3c/testharness.js/blob/master/idlharness.js#L1461
+  has been tested by idlharness.js `IdlInterface.prototype.test_interface_of`
+  at https://github.com/w3c/testharness.js/blob/master/idlharness.js#L1461
 * "passing arguments of the wrong type" may be supported by idlharness.js
-`IdlInterface.prototype.test_interface_of` at the same place sometime in the
-future; thus these tests designed here are subjected to be replaced.
+  `IdlInterface.prototype.test_interface_of` at the same place sometime in the
+  future; thus these tests designed here are subjected to be replaced.
+* **TypeError** indicates the actual type of an operand is different than the
+  expected type. **SyntaxError** indicates that a parsing error has occurred.
+  [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/#sec-native-error-types-used-in-this-standard-typeerror)
+* [DOM 4](http://www.w3.org/TR/dom/#syntaxerror)
+  says **SyntaxError** means the string did not match the expected pattern.
+* However, there are still some interesting discussions about the TypeError and
+  SyntaxError exceptions. Simon told me that [WebIDL conversion happens first;
+  the input to the postMessage algorithm is IDL
+  values](https://critic.hoppipolla.co.uk/showcomments?review=3331&filter=all).
+  And I agreed to it. See more at
+  https://github.com/w3c/web-platform-tests/pull/1435,
+  https://github.com/w3c/web-platform-tests/pull/974,
+  https://github.com/w3c/webrtc-pc/issues/35.
 
 
 ## References
