@@ -221,6 +221,7 @@ navigator.nfc.push(
   '{ "prop1": "value1", "prop2": "value2" }'
 ).then(() => {
   console.log("Message pushed.");
+  // Test assertion: check that navigator.nfc.push() returns a promise.
   // Test assertion: re-read the NFC tag and check that the message data is
   //                 the same text string as pushed.
 }).catch((error) => {
