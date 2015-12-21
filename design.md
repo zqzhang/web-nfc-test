@@ -386,6 +386,14 @@ interface NFC {
 callback MessageCallback = void (NFCMessage message);
 ```
 
+Generally the test cases will read an NFC device, re-write message to the device
+and then re-read the device to check the data comparing to that pushed.
+Therefore test assertions designed below will focus on individual parameter to
+a certain method, with rest parameter(s) as default or simple value(s).
+
+#### `NFC.push(message, options)`
+
+#### `NFC.watch(callback, options)`
 
 ### Algorithm, Statement to Test
 
