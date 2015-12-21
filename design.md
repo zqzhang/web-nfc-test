@@ -314,7 +314,7 @@ navigator.nfc.push(
 
 // EXAMPLE 8: Write Chinese text as UTF-8
 let encoder = new TextEncoder([utfLabel = "utf-8"]);
-let utf8Text = encoder.encode("?????");
+let utf8Text = encoder.encode("电脑坏了。");
 
 navigator.nfc.push({ data: [
   {
@@ -389,11 +389,20 @@ callback MessageCallback = void (NFCMessage message);
 Generally the test cases will read an NFC device, re-write message to the device
 and then re-read the device to check the data comparing to that pushed.
 Therefore test assertions designed below will focus on individual parameter to
-a certain method, with rest parameter(s) as default or simple value(s).
+a certain method, without optional paramenter if not test that parameter, and
+with rest mandatory parameter(s) as default or simple value(s).
 
-#### `NFC.push(message, options)`
+#### DOMString as NFCPushMessage
 
-#### `NFC.watch(callback, options)`
+
+
+#### ArrayBuffer as NFCPushMessage
+
+
+
+#### NFCMessage as NFCPushMessage
+
+
 
 ### Algorithm, Statement to Test
 
