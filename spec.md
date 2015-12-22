@@ -26,6 +26,11 @@ may access them.
 ## `TestRunner` interface extensions
 
 ```js
+// partial interface Window {
+//   readonly attribute TestRunner testRunner;
+// };
+
+// interface TestRunner {
 partial interface TestRunner {
   void setNfcSupported(True|False);
   void createNfcDevice(Tag|Peer);
