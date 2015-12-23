@@ -26,31 +26,35 @@ may access them.
 ## `TestRunner` interface extensions
 
 ```js
-// partial interface Window {
-//   readonly attribute TestRunner testRunner;
-// };
+partial interface Window {
+  readonly attribute TestRunner testRunner;
+};
 
-// interface TestRunner {
-partial interface TestRunner {
-  void setNfcSupported(True|False);
-  void createNfcDevice(Tag|Peer);
-  void appendNfcRecord(RecordType, RecordMediaType, RecordData);
-  void proximityEvent(Found | Lost, Milliseconds)
+// https://codereview.chromium.org/1543823002/
+interface TestRunner {
+  // Sets whether NFC is supported or enabled.
+  void setMockNFCDeviceStatus(boolean supported, boolean enabled);
+
+  // Sets information about what type (deviceType) of NFC device would be
+  // discovered after (deviceDiscoveredAfterMS) and whether device should
+  // leave proximity after (deviceLostAfterMS).
+  void setMockNFCDeviceEvent(DOMString deviceType,
+                             double deviceDiscoveredAfterMS,
+                             double deviceLostAfterMS);
+
+  // Sets mock data for NFC (operation) that would be executed from layout test.
+  void setMockNFCData(DOMString operation,
+                      DOMString messageURL,
+                      DOMString[] recordTypes,
+                      DOMString[] mediaTypes,
+                      DOMString[] records);
+
+  void resetMockNFCDevice();
 };
 ```
 
 ## Examples
 
-```
-function testPassedCB(nfcmessage) {
- // check that message is correct
-}
-
-testRuner.createTag();
-testRuner.appendNFCRecord("text", "text/plain", "HelloWorld!");
-navigator.nfc.watch(testPassedCB);
-testRuner.proximityEvent("found", 10);
-```
 
 ## References
 
